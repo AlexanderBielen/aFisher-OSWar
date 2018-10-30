@@ -22,7 +22,7 @@ import java.util.ArrayList;
         category = Category.FISHING,
         description = "An AIO ::skilling fishing bot",
         name = "aFisher", servers = { "OSWar" },
-        version = 0.1)
+        version = 1.0)
 public class Core extends Script implements Paintable {
     private ArrayList<Strategy> strategies = new ArrayList<>();
     private Overlay overlay = new Overlay();
