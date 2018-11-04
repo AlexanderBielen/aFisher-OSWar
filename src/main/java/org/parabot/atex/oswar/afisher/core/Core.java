@@ -25,9 +25,13 @@ import java.util.ArrayList;
         version = 1.0)
 public class Core extends Script implements Paintable {
     private ArrayList<Strategy> strategies = new ArrayList<>();
-    private Overlay overlay = new Overlay();
+    private Overlay overlay;
     private static Settings settings;
     private static Script core;
+
+    public Core() {
+        overlay = new Overlay();
+    }
 
     @Override
     public boolean onExecute() {

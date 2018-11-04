@@ -16,7 +16,9 @@ public class ItemPicker implements Random {
 
     @Override
     public boolean activate() {
-        return Game.isLoggedIn() && Interfaces.getOpenInterfaceId() == INTERFACE_ID;
+        return Game.isLoggedIn()
+                && Interfaces.getOpenInterfaceId() == INTERFACE_ID
+                && !Interfaces.getInterface(INTERFACE_ID + 3).getMessage().contains("0:00");
     }
 
     @Override
@@ -24,9 +26,8 @@ public class ItemPicker implements Random {
         Core.verbose("Item picker random event activated");
         Time.sleep(2000);
 
-        String itemName = Interfaces.getInterface(INTERFACE_ID + 2).getMessage();
-        itemName = itemName.substring(itemName.indexOf("'") + 1);
-        itemName = itemName.substring(0, itemName.indexOf("'"));
+        String message = Interfaces.getInterface(INTERFACE_ID + 2).getMessage();
+        String itemName = message.substring(message.indexOf("'") + 1, message.indexOf("'", message.indexOf("'") + 1));
 
         for(int i = INTERFACE_ID + 11; i <= INTERFACE_ID + 17; i += 3) {
             try {
@@ -36,7 +37,7 @@ public class ItemPicker implements Random {
                 JSONObject json = (JSONObject) WebUtil.getJsonParser().parse(response);
                 JSONObject result = (JSONObject) WebUtil.getJsonParser().parse(json.get("result").toString());
 
-                if(result.get("name").equals(itemName)) {
+                if(result.get("name").toString().toLowerCase().contains(itemName.toLowerCase())) {
                     Core.verbose("Attempting solution");
                     Menu.sendAction(315,0,0,i+1,2);
                     break;

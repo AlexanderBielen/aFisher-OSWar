@@ -13,6 +13,8 @@ import org.rev317.min.api.methods.Inventory;
 import org.rev317.min.api.methods.SceneObjects;
 import org.rev317.min.api.wrappers.SceneObject;
 
+import java.util.Arrays;
+
 public class WithdrawTools implements Strategy {
     @Override
     public boolean activate() {
@@ -53,7 +55,7 @@ public class WithdrawTools implements Strategy {
                 if (Inventory.isEmpty()) {
                     for(int i : Core.getSettings().getSelectedFish().getToolIds()) {
                         if(Bank.getCount(i) > 0) {
-                            if (Constants.BAITS.contains(i)) {
+                            if (Arrays.asList(Constants.BAITS).contains(i)) {
                                 Bank.withdraw(i, Bank.getCount(i), 1000);
                             } else {
                                 Bank.withdraw(i, 1, 1000);
