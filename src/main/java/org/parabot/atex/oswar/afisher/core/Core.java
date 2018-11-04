@@ -2,7 +2,7 @@ package org.parabot.atex.oswar.afisher.core;
 
 import org.parabot.atex.oswar.afisher.data.Methods;
 import org.parabot.atex.oswar.afisher.data.Settings;
-import org.parabot.atex.oswar.afisher.randoms.PickItem;
+import org.parabot.atex.oswar.afisher.randoms.ItemPicker;
 import org.parabot.atex.oswar.afisher.strategies.TeleportToSkilling;
 import org.parabot.atex.oswar.afisher.strategies.*;
 import org.parabot.atex.oswar.afisher.ui.Gui;
@@ -31,7 +31,8 @@ public class Core extends Script implements Paintable {
 
     @Override
     public boolean onExecute() {
-        strategies.add(new PickItem());
+        addRandom(new ItemPicker());
+
         strategies.add(new WithdrawTools());
         strategies.add(new PowerDrop());
         strategies.add(new Banking());
