@@ -35,8 +35,9 @@ public class Core extends Script implements Paintable {
 
     @Override
     public boolean onExecute() {
-        addRandom(new ItemPicker());
+        strategies.add(new ItemPicker());
 
+        strategies.add(new Relog());
         strategies.add(new WithdrawTools());
         strategies.add(new PowerDrop());
         strategies.add(new Banking());
